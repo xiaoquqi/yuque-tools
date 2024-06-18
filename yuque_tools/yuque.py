@@ -72,7 +72,7 @@ class Yuque:
                 # ![image.png](https://cdn.nlark.com/yuque/path/xxxx.png#REMOVED_PART
                 if re.match(r"!\[(.*?)\].*yuque", line):
                     find_pattern = re.compile(
-                        r'https://.*?\.(jpeg|jpg|gif|png)')
+                        r'https://.*?\.(jpeg|jpg|gif|png|svg|webp)')
                     match = find_pattern.search(line)
                     image_url = match.group()
 
