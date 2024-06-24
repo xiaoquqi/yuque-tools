@@ -10,17 +10,19 @@
 
 同时为了方便其他工具识别，自动为语雀Markdown添加必要的空行。
 
-### 语雀文档下载(无Token)
+### 使用流程
 
-推荐使用(ytool工具下载)[https://github.com/vannvan/yuque-tools/blob/main/packages/yuque-tools-cli/README.md#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F]
+#### 1. 语雀文档下载(无Token)
 
-### 安装
+推荐使用 [ytool工具下载语雀文档](https://github.com/vannvan/yuque-tools/blob/main/packages/yuque-tools-cli/README.md#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F)
+
+#### 2. 安装本工具
 
 ```
 pip install https://github.com/xiaoquqi/yuque-tools
 ```
 
-### 使用方法
+#### 3. 使用本工具自动下载图片到本地目录
 
 ```
 usage: yuque-images-downloader [-h] [-d] [-v] [-p MARKDOWN_DIR] [-i IMAGE_DOWNLOAD_DIR] [-b]
