@@ -45,3 +45,24 @@ optional arguments:
 ```
 yuque-images-downloader -p docs -b
 ```
+
+## Markdown格式化工具
+
+### 使用场景
+
+从语雀导出Markdown格式后，存在不换行问题，例如标题和段落、段落和段落之间没有空行的情况，所以提供了一个专门用于格式化的工具对导出的Markdown格式进行处理。目前处理的内容包括：
+
+* 标题上下增加空行
+* 段落上下增加空行
+* Code开始前有空行，结束后有空行，Code中的内容不受影响
+* 分割线上下增加空行
+* List不增加换行
+
+
+### 使用方法
+
+下载方法见上，使用方法如下：
+
+```
+yuque-markdown-formatter -p docs -b
+```

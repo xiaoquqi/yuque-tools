@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Program to Download Images from Yuque Markdown Documents
-#
-# This program downloads images embedded in Yuque markdown
-# documents and saves them locally.
-# Additionally, it ensures that the markdown formatting is
-# preserved by adding necessary line breaks.
+# Program to Format Markdown
 #
 # Author: Ray Sun <xiaoquqi@gmail.com>
 # Version: 0.1
@@ -16,12 +11,13 @@
 import argparse
 import logging
 import os
+import shutil
 import sys
 
 from yuque_tools.utils import utils
-from yuque_tools.utils.image_downloader import YuqueImageDownloder
+from yuque_tools.utils.markdown_formatter import MarkdownFormatter
 
-DEFAULT_IMAGE_PATH = "_images"
+DEFAULT_BACKUP_PATH = ".bak"
 
 
 def parse_sys_args(argv):
@@ -38,16 +34,6 @@ def parse_sys_args(argv):
         "-p", "--markdown-dir",
         type=str,
         help="Directory containing Yuque exported markdown files"
-    )
-    parser.add_argument(
-        "-i", "--image-download-dir",
-        type=str,
-        default=DEFAULT_IMAGE_PATH,
-        help=(
-            f"Directory to save downloaded images (default is "
-            f"{DEFAULT_IMAGE_PATH} at the same level of markdown "
-            f"file)"
-        )
     )
     parser.add_argument(
         "-b", "--backup",
@@ -72,8 +58,6 @@ def main():
     markdown_dir = args["markdown_dir"]
     markdown_path = str(os.path.abspath(markdown_dir))
 
-    image_download_dir = args["image_download_dir"]
-
     if not os.path.exists(markdown_dir):
         logging.error(f"{markdown_dir} is not exists, please check.")
         sys.exit(1)
@@ -87,10 +71,10 @@ def main():
         sys.exit(1)
 
     for md_file in md_files:
-        logging.info(f"Starting to download images for {md_file}")
-        image_downloader = YuqueImageDownloder(md_file, image_download_dir)
-        image_downloader.download()
-        logging.info(f"Finish downloading images for {md_file}")
+        logging.info(f"Starting to format markdown for {md_file}")
+        image_downloader = MarkdownFormatter(md_file)
+        image_downloader.format()
+        logging.info(f"Finish formatting markdown for {md_file}")
 
 
 if __name__ == "__main__":
