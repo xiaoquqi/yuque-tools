@@ -57,8 +57,8 @@ class MarkdownFormatter:
         if re.match(r'^\s*```', stripped_line):
             logging.debug(f"Code block detected at line {index + 1}")
             self._handle_code_block(lines, line, index)
-        elif re.match(r'^\s*[-*]\s', stripped_line) or re.match(r'^\s*\d+\.\s', stripped_line):
-            logging.debug(f"List item detected at line {index + 1}")
+        elif re.match(r'^\s*[-*|]\s', stripped_line) or re.match(r'^\s*\d+\.\s', stripped_line):
+            logging.debug(f"List item or table detected at line {index + 1}")
             lines.append(line)
         elif re.match(r'^#+\s', stripped_line) or re.match(r'^\s*[-=]+$', stripped_line):
             logging.debug(f"Title or separator detected at line {index + 1}")
