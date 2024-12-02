@@ -49,6 +49,11 @@ class YuqueImageDownloder(object):
                     md_basename, str(index), image_extname)
                 save_path = os.path.join(image_full_path, image_name)
 
+                if os.path.exists(save_path):
+                    logging.warn(f"Skip to download image from {image_url} "
+                                 f"due to image is already exists in {save_path}")
+                    continue
+
                 logging.info("Downloading image %s to %s..." % (
                     image_url, save_path))
 
