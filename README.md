@@ -2,6 +2,13 @@
 
 本项目中主要存放用于将语雀迁移走的实用工具和方法。
 
+## 功能特性
+
+- 支持将语雀导出的 Markdown 文档转换为 Word 文档
+- 自动处理文件名和目录名中的特殊字符（如中括号、空格等）
+- 保持原有的目录结构
+- 转换后的文件会保存在原目录同级的 `.converted` 目录下
+
 ## 语雀图片下载工具
 
 ### 使用场景
@@ -65,4 +72,15 @@ yuque-images-downloader -p docs -b
 
 ```
 yuque-markdown-formatter -p docs -b
+```
+## Markdown转Word工具
+
+### 使用场景
+
+从语雀导出Markdown格式后，需要将Markdown格式转换为Word格式，方便导入其他软件时使用。
+
+### 使用方法
+
+```
+yuque-markdown-to-word -p docs
 ```

@@ -2,6 +2,9 @@ import logging
 import os
 import re
 import requests
+from pypinyin import lazy_pinyin
+
+from yuque_tools.utils.image_converter import convert_image_to_png
 
 
 class YuqueImageDownloder(object):
@@ -41,6 +44,11 @@ class YuqueImageDownloder(object):
 
                 md_basename = os.path.splitext(
                     os.path.basename(self.md_path))[0]
+                
+                # Convert Chinese to pinyin and keep only alphanumeric characters
+                md_basename = ''.join(lazy_pinyin(md_basename))
+                md_basename = re.sub(r'[^a-zA-Z0-9]', '', md_basename)
+
                 image_extname = os.path.splitext(
                     os.path.basename(image_url))[1]
 
@@ -61,6 +69,16 @@ class YuqueImageDownloder(object):
                 if response.status_code == 200:
                     with open(save_path, "wb") as file:
                         file.write(response.content)
+                        
+                    # Convert the downloaded image to PNG format
+                    try:
+                        converted_path = convert_image_to_png(save_path)
+                        if converted_path != save_path:
+                            # Update image name and path if conversion was successful
+                            image_name = os.path.basename(converted_path)
+                            save_path = converted_path
+                    except Exception as e:
+                        logging.error(f"Failed to convert image {save_path}: {str(e)}")
                 else:
                     logging.warning(
                         f"Skip to download image, status code "
